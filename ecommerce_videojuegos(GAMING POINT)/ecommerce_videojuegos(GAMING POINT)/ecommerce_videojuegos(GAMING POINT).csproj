@@ -5,4 +5,8 @@
     <RootNamespace>ecommerce_videojuegos_GAMING_POINT_</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
+  </ItemGroup>
+
 </Project>

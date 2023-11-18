@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CC\\DSW\\clon\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj": {}
+    "C:\\Users\\mira\\Source\\Repos\\serviciosweb_proyecto\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj": {}
   },
   "projects": {
-    "D:\\CC\\DSW\\clon\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj": {
+    "C:\\Users\\mira\\Source\\Repos\\serviciosweb_proyecto\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CC\\DSW\\clon\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj",
+        "projectUniqueName": "C:\\Users\\mira\\Source\\Repos\\serviciosweb_proyecto\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj",
         "projectName": "ecommerce_videojuegos(GAMING POINT)",
-        "projectPath": "D:\\CC\\DSW\\clon\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj",
+        "projectPath": "C:\\Users\\mira\\Source\\Repos\\serviciosweb_proyecto\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT).csproj",
         "packagesPath": "C:\\Users\\mira\\.nuget\\packages\\",
-        "outputPath": "D:\\CC\\DSW\\clon\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\obj\\",
+        "outputPath": "C:\\Users\\mira\\Source\\Repos\\serviciosweb_proyecto\\ecommerce_videojuegos(GAMING POINT)\\ecommerce_videojuegos(GAMING POINT)\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mira\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,30 +39,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
