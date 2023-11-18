@@ -1,6 +1,8 @@
+using ecommerce_videojuegos_GAMING_POINT_.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,11 @@ namespace ecommerce_videojuegos_GAMING_POINT_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddDbContext<ProyectoContext>(option =>
+                    option.UseSqlServer(Configuration.GetConnectionString("ProyectoDB"),
+                    ef => ef.MigrationsAssembly(typeof(ProyectoContext).Assembly.FullName)));
             services.AddControllersWithViews();
         }
 
