@@ -21,5 +21,19 @@ namespace ecommerce_videojuegos_GAMING_POINT_.DataAccess
                 .WithOne(e => e.OrdenDetalle)
                 .HasForeignKey(n => n.IdOrden);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductoEntity>()
+                .HasOne(n => n.OrdenDetalle)
+                .WithMany(e => e.Producto)
+                .HasForeignKey(n => n.IdOrdenDetalle);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrdenEntity>()
+                .HasOne(n => n.Usuario)
+                .WithMany(e => e.Orden)
+                .HasForeignKey(n => n.IdUsuario);
+        }
     }
 }
