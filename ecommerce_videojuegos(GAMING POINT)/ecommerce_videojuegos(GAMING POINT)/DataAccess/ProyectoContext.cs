@@ -9,9 +9,17 @@ namespace ecommerce_videojuegos_GAMING_POINT_.DataAccess
         public DbSet<OrdenEntity> Orden { get; set; }
         public DbSet<ProductoEntity> Producto { get; set; }
         public DbSet<DetalleEntity> OrdenDetalle { get; set; }
-
+        
         public ProyectoContext(DbContextOptions<ProyectoContext> option) : base(option)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DetalleEntity>()
+                .HasOne(n => n.Orden)
+                .WithOne(e => e.OrdenDetalle)
+                .HasForeignKey(n => n.IdOrden);
         }
     }
 }
