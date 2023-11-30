@@ -53,7 +53,7 @@ namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
             _productosContext.SaveChanges();
             return RedirectToAction("List", "Productos");
         }
-        public IActionResult Edit(int ID)
+        public IActionResult Edit(int Id)
         {
             var findProductos = _productosContext.Productos.Where(a => a.Id == Id).SingleOrDefault();
             var model = new ProductoMTNViewModel();
@@ -74,26 +74,26 @@ namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
             var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
             if (findAlumnos != null)
             {
-                findAlumnos.Nombre = model.Nombre;
-                findAlumnos.Apellido = model.Apellido;
-                findAlumnos.DNI = model.DNI.HasValue ? model.DNI.Value : 0;
-                findAlumnos.FechaNacimiento = DateTime.Now;
-                findAlumnos.Correo = model.Correo;
-                findAlumnos.Celular = model.Celular.HasValue ? model.Celular.Value : 0;
-                findAlumnos.NombreContacto = model.NombreContacto;
-                findAlumnos.TelefonoContacto = model.TelefonoContacto.HasValue ? model.TelefonoContacto.Value : 0;  
-                _alumnosContext.SaveChanges();
+                findProductos.nombreproducto = model.nombreproducto;
+                findProductos.marca = model.marca;
+                findProductos.precio = model.precio;
+                findProductos.descuento = model.descuento;
+                findProductos.preciofinal = model.preciofinal;
+                findProductos.stock = model.stock;
+                findProductos.descripcion = model.descripcion;
+                findProductos.imagen = model.imagen;
+                _productosContext.SaveChanges();
             }
 
-            return RedirectToAction("List", "Alumnos");
+            return RedirectToAction("List", "Productos");
         }
         [HttpGet]
-        public JsonResult DeleteAlumnos(int ID)
+        public JsonResult DeleteProductos(int Id)
         {
-            var findAlumnos = _alumnosContext.Alumnos.SingleOrDefault(a => a.ID == ID);
-            _alumnosContext.Alumnos.Remove(findAlumnos);
-            _alumnosContext.SaveChanges();
-            return Json("Se eliminó al alumno de manera correcta");
+            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
+            _productosContext.Productos.Remove(findProductos);
+            _productosContext.SaveChanges();
+            return Json("Se eliminó al productos de manera correcta");
         }
     }
 }
