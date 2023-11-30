@@ -4,76 +4,74 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
 {
-    public class AlumnosController : Controller
+    public class ProductoController : Controller
     {
-        private readonly AlumnosContext _alumnosContext;
-        public AlumnosController(AlumnosContext alumnosContext)
+        private readonly ProductosContext _productosContext;
+        public ProductosController(ProductosContext productosContext)
         {
-            this._alumnosContext = alumnosContext;
+            this._productosContext = productosContext;
         }
         public IActionResult List()
         {
-            var listResult = _alumnosContext.Alumnos.ToList();
+            var listResult = _productosContext.Productos.ToList();
 
-            AlumnosListViewModel model = new AlumnosListViewModel();
+            ProductoMTNListViewModel model = new ProductoMTNListViewModel();
             model.List = (from a in listResult
-                          select new AlumnosViewModel()
+                          select new ProductoMTNViewModel()
                           {
-                              ID = a.ID,
-                              Nombre = a.Nombre,
-                              Apellido = a.Apellido,
-                              DNI = a.DNI,
-                              FechaNacimiento = a.FechaNacimiento,
-                              Correo = a.Correo,
-                              Celular = a.Celular,
-                              NombreContacto = a.NombreContacto,
-                              TelefonoContacto = a.TelefonoContacto,
-                              Estado = a.Estado
+                              Id = a.Id,
+                              nombreproducto = a.nombreproducto,
+                              marca = a.marca,
+                              precio = a.precio,
+                              descuento = a.descuento,
+                              preciofinal = a.preciofinal,
+                              stock = a.stock,
+                              descripcion = a.descripcion,
+                              imagen = a.imagen,
                           }).ToList();
             return View(model);
         }
 
         public IActionResult Add()
         {
-            AlumnosViewModel model = new AlumnosViewModel();
+            ProductoMTNViewModel model = new ProductoMTNViewModel();
             return View(model);
         }
 
-        public IActionResult AddSavedAction(AlumnosViewModel model)
+        public IActionResult AddSavedAction(ProductoMTNViewModel model)
         {  
-            AlumnosEntity entity = new AlumnosEntity();
-            entity.Nombre = model.Nombre;
-            entity.Apellido = model.Apellido;
-            entity.DNI = model.DNI.HasValue ? model.DNI.Value : 0;
-            entity.FechaNacimiento = DateTime.Now;
-            entity.Correo = model.Correo;
-            entity.Celular = model.Celular.HasValue ? model.Celular.Value : 0;
-            entity.NombreContacto = model.NombreContacto;
-            entity.TelefonoContacto = model.TelefonoContacto.HasValue ? model.TelefonoContacto.Value : 0;
-            entity.Estado = "Activo";
-            _alumnosContext.Alumnos.Add(entity);
-            _alumnosContext.SaveChanges();
-            return RedirectToAction("List", "Alumnos");
+            ProductosEntity entity = new ProductosEntity();
+            entity.nombreproducto = model.nombreproducto;
+            entity.marca = model.marca;
+            entity.precio = model.precio.HasValue ? model.DNI.Value : 0;
+            entity.descuento =model.descuento;
+            entity.preciofinal = model.preciofinal;
+            entity.stock = model.stock.HasValue ? model.Celular.Value : 0;
+            entity.descripcion = model.descripcion;
+            entity.imagen = model.imagen.HasValue ? model.TelefonoContacto.Value : 0;
+            _productosContext.Productos.Add(entity);
+            _productosContext.SaveChanges();
+            return RedirectToAction("List", "Productos");
         }
         public IActionResult Edit(int ID)
         {
-            var findAlumnos = _alumnosContext.Alumnos.Where(a => a.ID == ID).SingleOrDefault();
-            var model = new AlumnosViewModel();
-            model.ID = findAlumnos.ID;
-            model.Nombre = findAlumnos.Nombre;
-            model.Apellido = findAlumnos.Apellido;
-            model.DNI = findAlumnos.DNI;
-            model.FechaNacimiento = findAlumnos.FechaNacimiento;
-            model.Correo = findAlumnos.Correo;
-            model.Celular = findAlumnos.Celular;
-            model.NombreContacto = findAlumnos.NombreContacto;
-            model.TelefonoContacto = findAlumnos.TelefonoContacto;
+            var findProductos = _productosContext.Productos.Where(a => a.Id == Id).SingleOrDefault();
+            var model = new ProductoMTNViewModel();
+            model.Id = findProductos.Id;
+            model.nombreproducto = findProductos.nombreproducto;
+            model.marca = findProductos.marca;
+            model.precio = findProductos.precio;
+            model.descuento = findProductos.descuento;
+            model.preciofinal = findProductos.preciofinal;
+            model.stock = findProductos.stock;
+            model.descripcion = findProductos.descripcion;
+            model.imagen = findProductos.imagen;
             return View(model);
         }
         [HttpPost]
-        public IActionResult EditSaved(AlumnosViewModel model)
+        public IActionResult EditSaved(ProductoMTNViewModel model)
         {
-            var findAlumnos = _alumnosContext.Alumnos.SingleOrDefault(a => a.ID == model.ID);
+            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
             if (findAlumnos != null)
             {
                 findAlumnos.Nombre = model.Nombre;
