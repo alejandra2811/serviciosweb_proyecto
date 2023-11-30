@@ -1,19 +1,24 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using avanceproyidk.DataAccess;
+using avanceproyidk.Models;
+using avanceproyidk.DataAccess.DBEntities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
+using Microsoft.AspNetCore.Mvc;
+
+namespace avanceproyidk.Controllers
 {
     public class ProductoController : Controller
     {
-        private readonly ProductosContext _productosContext;
-        public ProductosController(ProductosContext productosContext)
+        private readonly CarritoContext _productosContext;
+        public ProductoController(CarritoContext productosContext)
         {
             this._productosContext = productosContext;
         }
         public IActionResult List()
         {
-            var listResult = _productosContext.Productos.ToList();
+            var listResult = _productosContext.Producto.ToList();
 
             ProductoMTNListViewModel model = new ProductoMTNListViewModel();
             model.List = (from a in listResult
@@ -40,22 +45,22 @@ namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
 
         public IActionResult AddSavedAction(ProductoMTNViewModel model)
         {  
-            ProductosEntity entity = new ProductosEntity();
+            ProductoEntity entity = new ProductoEntity();
             entity.nombreproducto = model.nombreproducto;
             entity.marca = model.marca;
-            entity.precio = model.precio.HasValue ? model.DNI.Value : 0;
+            entity.precio = model.precio;
             entity.descuento =model.descuento;
             entity.preciofinal = model.preciofinal;
-            entity.stock = model.stock.HasValue ? model.Celular.Value : 0;
+            entity.stock = model.stock;
             entity.descripcion = model.descripcion;
-            entity.imagen = model.imagen.HasValue ? model.TelefonoContacto.Value : 0;
-            _productosContext.Productos.Add(entity);
+            entity.imagen = model.imagen;
+            _productosContext.Producto.Add(entity);
             _productosContext.SaveChanges();
             return RedirectToAction("List", "Productos");
         }
         public IActionResult Edit(int Id)
         {
-            var findProductos = _productosContext.Productos.Where(a => a.Id == Id).SingleOrDefault();
+            var findProductos = _productosContext.Producto.Where(a => a.Id == Id).SingleOrDefault();
             var model = new ProductoMTNViewModel();
             model.Id = findProductos.Id;
             model.nombreproducto = findProductos.nombreproducto;
@@ -71,8 +76,8 @@ namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
         [HttpPost]
         public IActionResult EditSaved(ProductoMTNViewModel model)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
-            if (findAlumnos != null)
+            var findProductos = _productosContext.Producto.SingleOrDefault(a => a.Id == model.Id);
+            if (findProductos != null)
             {
                 findProductos.nombreproducto = model.nombreproducto;
                 findProductos.marca = model.marca;
@@ -90,8 +95,8 @@ namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
         [HttpGet]
         public JsonResult DeleteProductos(int Id)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
-            _productosContext.Productos.Remove(findProductos);
+            var findProductos = _productosContext.Producto.SingleOrDefault(a => a.Id == Id);
+            _productosContext.Producto.Remove(findProductos);
             _productosContext.SaveChanges();
             return Json("Se eliminó al productos de manera correcta");
         }
